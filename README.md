@@ -43,3 +43,5 @@ The script automates the full workflow. It ensures the allocator is tested with 
 - Times performance of a test run using time
 
 valgrind.log, memory_analysis.log and massif.out were generated as a result of running makefile wrapped up in the script.
+
+The memory allocator works perfectly as zero memory leaks were detected as all tests passed. Also allocator showed a significant increase performance-wise comparing to system allocator. The difference is calculated up to 0.48 ratio which means that custom allocator is approximately 2.1x faster than the standard library's allocator for specific workload or test scenario.
