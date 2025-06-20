@@ -6,7 +6,7 @@ VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes --v
 ASAN_FLAGS = -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer
 
 # Source files
-ALLOCATOR_SRC = memory_allocator.c
+ALLOCATOR_SRC = allocator.c
 TEST_SRC = allocator_tests.c
 COMBINED_SRC = combined_test.c
 

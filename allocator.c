@@ -4,6 +4,7 @@
 #include <sys/mman.h>
 #include <stdio.h>
 #include <assert.h>
+#include "allocator.h"
 
 #define MIN_PAYLOAD_SIZE 16
 #define DEFAULT_HEAP_SIZE 4096
@@ -12,7 +13,6 @@
 // Global variables
 void* heap_start = NULL;
 void* heap_end = NULL;
-block_header* free_list = NULL;
 
 typedef struct block_header {
     size_t payload_size;
@@ -22,22 +22,19 @@ typedef struct block_header {
     uint32_t magic;  // For debugging and corruption detection
 } block_header;
 
+block_header* free_list = NULL;
+
 #define MAGIC_FREE 0xDEADBEEF
 #define MAGIC_ALLOCATED 0xFEEDFACE
 
 // Function declarations
-void* init_allocator(size_t initial_size);
 block_header* find_free_block(size_t required_size);
 block_header* split_block(block_header* block, size_t required_size);
-void* my_malloc(size_t size);
-void my_free(void* payload_ptr);
 void coalesce_block(block_header* block);
 void add_to_free_list(block_header* block);
 void remove_from_free_list(block_header* block);
 void* expand_heap(size_t size);
 size_t align_size(size_t size);
-int validate_heap();
-void print_heap_debug();
 
 // Align size to ALIGNMENT boundary
 size_t align_size(size_t size) {
