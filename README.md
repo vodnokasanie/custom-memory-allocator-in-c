@@ -2,7 +2,7 @@
 Implementation of my own custom allocator using C language
 
 Custom Memory Allocator
-A custom implementation of dynamic memory allocation functions (malloc and free) in C, designed for educational purposes and performance experimentation.
+A custom implementation of dynamic memory allocation functions (`malloc` and `free`) in C, designed for educational purposes and performance experimentation.
 Overview
 This allocator implements a heap-based memory management system using the sbrk() system call to manage memory directly from the operating system. The core of the allocator is based on the doubly-linked free list data structure using first fit technique. It provides an alternative to the standard library's malloc() and free() functions with additional debugging capabilities and explicit control over allocation strategies.
 Features
